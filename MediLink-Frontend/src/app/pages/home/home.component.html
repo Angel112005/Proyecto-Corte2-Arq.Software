@@ -1,0 +1,32 @@
+<div class="text-center mt-12">
+  <h1 class="text-4xl font-bold text-gray-800 ">Welcome to...</h1>
+  <img
+    src="medilink.webp"
+    alt="Salud"
+    class="mx-auto rounded-3xl shadow-lg max-w-xl transform transition duration-300 hover:scale-105"
+  />
+  <button
+    (click)="navigateToAppointmentForm()"
+    class="mt-8 bg-sky-500 text-white text-2xl px-9 py-6 rounded-lg hover:bg-cyan-700 transition"
+  >
+    Agendar Cita
+  </button>
+</div>
+
+<!-- Notificación flotante -->
+<div
+  *ngFor="let notification of notifications"
+  class="fixed bottom-10 right-5 bg-blue-600 text-white p-6 rounded-xl shadow-2xl w-80 max-w-md transition-transform transform translate-y-0 opacity-100"
+  [ngClass]="{ 'animate-fade-out': notification.dismissed }"
+>
+  <div class="flex justify-between items-center">
+    <p class="text-xl font-bold">📢 Nueva Cita</p>
+    <button (click)="dismissNotification(notification)" class="text-white text-2xl font-bold">&times;</button>
+  </div>
+  <p class="mt-2 text-lg font-semibold">
+    Paciente: {{ notification.patient_name }}
+  </p>
+  <p class="mt-1 text-md">👨‍⚕️ Doctor ID: {{ notification.doctor_id }}</p>
+  <p class="mt-1 text-md">📅 Fecha: {{ notification.appointment_date }}</p>
+  <p class="mt-1 text-md">📌 Estado: <span class="font-semibold">{{ notification.status }}</span></p>
+</div>

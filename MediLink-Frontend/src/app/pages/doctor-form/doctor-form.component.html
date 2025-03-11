@@ -1,0 +1,57 @@
+<div class="container mx-auto p-6">
+  <h1 class="text-3xl font-bold text-gray-700 mb-6">
+    {{ isEdit ? 'Editar Doctor' : 'Nuevo Doctor' }}
+  </h1>
+
+  <form (ngSubmit)="submitForm()" class="grid gap-6">
+    <div>
+      <label for="name" class="block text-lg font-medium text-gray-700 mb-2">
+        Nombre
+      </label>
+      <input
+        type="text"
+        id="name"
+        [(ngModel)]="doctor.name"
+        name="name"
+        class="w-full border px-4 py-2 rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
+        required
+      />
+    </div>
+
+    <div>
+      <label for="specialty" class="block text-lg font-medium text-gray-700 mb-2">
+        Especialidad
+      </label>
+      <input
+        type="text"
+        id="specialty"
+        [(ngModel)]="doctor.specialty"
+        name="specialty"
+        class="w-full border px-4 py-2 rounded-lg focus:outline-none focus:ring focus:ring-blue-300 cursor-help"
+        [readOnly]="isEdit"
+        required
+      />
+    </div>
+
+    <div>
+      <label for="experience" class="block text-lg font-medium text-gray-700 mb-2">
+        Experiencia (años)
+      </label>
+      <input
+        type="number"
+        id="experience"
+        [(ngModel)]="doctor.experience"
+        name="experience"
+        class="w-full border px-4 py-2 rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
+        required
+      />
+    </div>
+
+    <button
+      type="submit"
+      class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
+    >
+      Guardar
+    </button>
+  </form>
+</div>

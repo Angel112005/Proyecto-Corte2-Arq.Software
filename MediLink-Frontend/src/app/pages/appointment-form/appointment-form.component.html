@@ -1,0 +1,64 @@
+<div class="container mx-auto mt-8">
+  <h2 class="text-2xl font-bold mb-4">Editar Cita</h2>
+  <form (ngSubmit)="submitForm()" class="space-y-4">
+    <div>
+      <label for="patientName" class="block font-medium">Nombre del Paciente</label>
+      <input
+        type="text"
+        id="patientName"
+        [(ngModel)]="appointment.patient_name"
+        name="patient_name"
+        class="w-full border px-3 py-2 rounded"
+        required
+      />
+    </div>
+
+    <!-- <div>
+      <label for="patientName" class="block font-medium">ID del Médico</label>
+      <input
+        type="number"
+        id="IdDoctor"
+        [(ngModel)]="appointment.doctor_id"
+        name="IdDoctor"
+        class="w-full border px-3 py-2 rounded"
+        [readOnly]="isEdit"
+        required
+      />
+    </div> -->
+
+    <div>
+      <label for="doctor" class="block font-medium">Seleccionar Médico</label>
+      <select
+        id="doctor"
+        [(ngModel)]="appointment.doctor_id"
+        name="doctor_id"
+        class="w-full border px-3 py-2 rounded"
+        required
+      >
+        <option *ngFor="let doctor of doctors" [value]="doctor.id">
+          Dr. {{ doctor.name }} - {{ doctor.specialty }}
+        </option>
+      </select>
+    </div>
+
+
+    <div>
+      <label for="date" class="block font-medium">Fecha</label>
+      <input
+        type="datetime-local"
+        id="date"
+        [(ngModel)]="appointment.appointment_date"
+        name="appointment_date"
+        class="w-full border px-3 py-2 rounded"
+        required
+      />
+    </div>
+
+    <button
+      type="submit"
+      class="px-4 py-2 bg-blue-600 text-white rounded-md shadow-md hover:bg-blue-700"
+    >
+      Actualizar Cita
+    </button>
+  </form>
+</div>
