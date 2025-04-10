@@ -1,0 +1,39 @@
+<div class="max-w-6xl mx-auto px-6 py-10">
+  <div class="flex justify-between items-center mb-8">
+    <h2 class="text-4xl font-bold text-gray-800">👨‍⚕️ Administración de Doctores</h2>
+    <button
+      (click)="navigateToNewDoctor()"
+      class="bg-indigo-600 hover:bg-indigo-700 transition text-white px-6 py-3 rounded-lg shadow-md"
+    >
+      ➕ Nuevo Doctor
+    </button>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div
+      *ngFor="let doctor of doctors"
+      class="bg-white border border-gray-200 rounded-xl shadow-lg p-6 hover:shadow-xl transition"
+    >
+      <div class="mb-4">
+        <h3 class="text-2xl font-bold text-gray-800">{{ doctor.name }}</h3>
+        <p class="text-gray-600 mt-1">🔬 <strong>Especialidad:</strong> {{ doctor.specialty }}</p>
+        <p class="text-gray-600 mt-1">📈 <strong>Experiencia:</strong> {{ doctor.experience }} años</p>
+      </div>
+
+      <div class="flex justify-between mt-6">
+        <button
+          (click)="editDoctor(doctor.id)"
+          class="flex-1 bg-sky-500 hover:bg-sky-600 text-white py-2 px-4 rounded-lg mr-2 transition"
+        >
+          ✏️ Editar
+        </button>
+        <button
+          (click)="deleteDoctor(doctor.id)"
+          class="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg transition"
+        >
+          🗑️ Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,65 @@
+<div class="min-h-screen flex flex-col bg-gradient-to-br from-white via-sky-50 to-white">
+  <!-- 🏥 Hero principal -->
+  <div class="flex flex-col md:flex-row items-center justify-center gap-10 px-6 py-12 text-center md:text-left">
+    <!-- Texto -->
+    <div class="max-w-xl">
+      <h1 class="text-5xl lg:text-6xl font-extrabold text-sky-700 mb-4">👋 Welcome to MediLink Clinic</h1>
+      <p class="text-lg md:text-xl text-gray-600 mb-6 leading-relaxed">
+        Tu plataforma confiable para <span class="font-semibold text-gray-800">agendar citas</span>,
+        gestionar <span class="text-gray-800 font-semibold">doctores</span> y recibir notificaciones en tiempo real 🧠.
+      </p>
+      <button
+        routerLink="/appointments/new"
+        class="bg-sky-600 hover:bg-sky-700 text-white text-lg md:text-xl px-8 py-4 rounded-lg shadow-lg transition duration-300"
+      >
+        🩺 Agendar una Cita
+      </button>
+    </div>
+
+    <!-- Imagen -->
+    <div class="max-w-lg w-full">
+      <img
+        src="medilink.webp"
+        alt="Cuidado de la salud"
+        class="rounded-3xl shadow-2xl transform hover:scale-105 transition duration-500 ease-in-out"
+      />
+    </div>
+  </div>
+
+  <!-- 💡 Beneficios destacados -->
+  <div class="bg-white py-12 px-6 text-center">
+    <h2 class="text-3xl font-bold text-gray-800 mb-6">✨ ¿Por qué usar MediLink?</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <div class="p-6 rounded-xl shadow-lg bg-sky-100">
+        <h3 class="text-xl font-semibold text-sky-700 mb-2">📆 Agendamiento Rápido</h3>
+        <p class="text-gray-700">Reserva citas en segundos desde cualquier dispositivo.</p>
+      </div>
+      <div class="p-6 rounded-xl shadow-lg bg-sky-100">
+        <h3 class="text-xl font-semibold text-sky-700 mb-2">📲 Notificaciones en Tiempo Real</h3>
+        <p class="text-gray-700">Recibe alertas instantáneas sobre tus citas y actualizaciones.</p>
+      </div>
+      <div class="p-6 rounded-xl shadow-lg bg-sky-100">
+        <h3 class="text-xl font-semibold text-sky-700 mb-2">👩‍⚕️ Gestión de Doctores</h3>
+        <p class="text-gray-700">Visualiza la experiencia y especialidad de cada médico disponible.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 🔔 Notificación flotante -->
+<div
+  *ngFor="let notification of notifications"
+  class="fixed bottom-10 right-5 bg-blue-600 text-white p-6 rounded-xl shadow-2xl w-80 max-w-md transition-transform transform translate-y-0 opacity-100"
+  [ngClass]="{ 'animate-fade-out': notification.dismissed }"
+>
+  <div class="flex justify-between items-center">
+    <p class="text-xl font-bold">📢 Nueva Cita</p>
+    <button (click)="dismissNotification(notification)" class="text-white text-2xl font-bold">&times;</button>
+  </div>
+  <p class="mt-2 text-lg font-semibold">👤 Paciente: {{ notification.patient_name }}</p>
+  <p class="mt-1 text-md">👨‍⚕️ Doctor ID: {{ notification.doctor_id }}</p>
+  <p class="mt-1 text-md">📅 Fecha: {{ notification.appointment_date }}</p>
+  <p class="mt-1 text-md">
+    📌 Estado: <span class="font-semibold">{{ notification.status }}</span>
+  </p>
+</div>

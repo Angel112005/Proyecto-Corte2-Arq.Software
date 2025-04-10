@@ -1,0 +1,23 @@
+<table class="table-auto w-full border-collapse border border-gray-300">
+  <thead>
+    <tr class="bg-gray-200">
+      <th class="border border-gray-300 px-4 py-2">ID</th>
+      <th class="border border-gray-300 px-4 py-2">Nombre</th>
+      <th class="border border-gray-300 px-4 py-2">Especialidad</th>
+      <th class="border border-gray-300 px-4 py-2">Experiencia</th>
+      <th class="border border-gray-300 px-4 py-2">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let doctor of doctors">
+      <td class="border border-gray-300 px-4 py-2">{{ doctor.id }}</td>
+      <td class="border border-gray-300 px-4 py-2">{{ doctor.name }}</td>
+      <td class="border border-gray-300 px-4 py-2">{{ doctor.specialty }}</td>
+      <td class="border border-gray-300 px-4 py-2">{{ doctor.experience }} años</td>
+      <td class="border border-gray-300 px-4 py-2">
+        <button (click)="editDoctor(doctor.id)" class="bg-blue-500 text-white px-2 py-1 rounded">Editar</button>
+        <button (click)="deleteDoctor(doctor.id)" class="bg-red-500 text-white px-2 py-1 rounded">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

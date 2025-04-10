@@ -1,0 +1,31 @@
+<div class="px-4 py-8 sm:px-6 lg:px-8">
+  <h2 class="text-4xl font-extrabold text-indigo-800 text-center mb-10">
+    👨‍⚕️ Lista de Doctores
+  </h2>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div
+      *ngFor="let doctor of doctors"
+      class="bg-white rounded-2xl shadow-md border border-gray-200 p-6 hover:shadow-xl transition duration-300"
+    >
+      <div class="flex items-center space-x-4 mb-4">
+        <div class="flex-shrink-0">
+          <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center text-xl font-bold">
+            {{ doctor.name.charAt(0) }}
+          </div>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold text-gray-800">
+            Dr. {{ doctor.name }}
+          </h3>
+          <p class="text-sm text-gray-500">ID: #{{ doctor.id }}</p>
+        </div>
+      </div>
+
+      <div class="text-gray-700 space-y-1">
+        <p><span class="font-medium">🔬 Especialidad:</span> {{ doctor.specialty }}</p>
+        <p><span class="font-medium">📈 Experiencia:</span> {{ doctor.experience }} años</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -40,15 +40,6 @@ func (r *AppointmentMySQL) FindAll() ([]appointment.Appointment, error) {
 	return appointments, nil
 }
 
-// func (r *AppointmentMySQL) FindByID(id int) (*appointment.Appointment, error) {
-// 	row := r.db.QueryRow("SELECT id, doctor_id, patient_name, appointment_date, status FROM appointments WHERE id = ?", id)
-// 	var a appointment.Appointment
-// 	if err := row.Scan(&a.ID, &a.DoctorID, &a.PatientName, &a.AppointmentDate, &a.Status); err != nil {
-// 		return nil, err
-// 	}
-// 	return &a, nil
-// }
-
 func (r *AppointmentMySQL) FindByID(id int) (*appointment.Appointment, error) {
     query := "SELECT id, doctor_id, patient_name, appointment_date, status FROM appointments WHERE id = ?"
     row := r.db.QueryRow(query, id)

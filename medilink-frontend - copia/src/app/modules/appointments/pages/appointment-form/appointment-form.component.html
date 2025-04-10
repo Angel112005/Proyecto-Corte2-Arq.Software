@@ -1,0 +1,69 @@
+<div class="flex items-center justify-center min-h-screen bg-gray-100 px-4">
+  <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-xl">
+    <h2 class="text-3xl font-bold text-blue-800 mb-6 text-center">
+      {{ isEdit ? '✏️ Editar Cita' : '🗓️ Nueva Cita' }}
+    </h2>
+
+    <form (ngSubmit)="submitForm()" class="space-y-6">
+      <!-- Paciente -->
+      <div>
+        <label for="patientName" class="block text-gray-700 font-semibold mb-1">
+          Nombre del Paciente
+        </label>
+        <input
+          type="text"
+          id="patientName"
+          [(ngModel)]="appointment.patient_name"
+          name="patient_name"
+          class="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Juan Pérez"
+          required
+        />
+      </div>
+
+      <!-- Doctor -->
+      <div>
+        <label for="doctor" class="block text-gray-700 font-semibold mb-1">
+          Seleccionar Médico
+        </label>
+        <select
+          id="doctor"
+          [(ngModel)]="appointment.doctor_id"
+          name="doctor_id"
+          class="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          required
+        >
+          <option value="" disabled selected>Seleccione un doctor</option>
+          <option *ngFor="let doctor of doctors" [value]="doctor.id">
+            Dr. {{ doctor.name }} - {{ doctor.specialty }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Fecha -->
+      <div>
+        <label for="date" class="block text-gray-700 font-semibold mb-1">
+          Fecha y Hora
+        </label>
+        <input
+          type="datetime-local"
+          id="date"
+          [(ngModel)]="appointment.appointment_date"
+          name="appointment_date"
+          class="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          required
+        />
+      </div>
+
+      <!-- Botón -->
+      <div class="text-center">
+        <button
+          type="submit"
+          class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 shadow-md"
+        >
+          {{ isEdit ? '💾 Actualizar Cita' : '➕ Guardar Cita' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

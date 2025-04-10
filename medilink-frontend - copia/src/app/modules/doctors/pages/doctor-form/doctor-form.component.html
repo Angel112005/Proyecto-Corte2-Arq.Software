@@ -1,0 +1,66 @@
+<div class="max-w-2xl mx-auto p-8 bg-white shadow-lg rounded-2xl border border-gray-200 mt-10">
+  <h1 class="text-4xl font-extrabold text-indigo-800 mb-8 text-center">
+    {{ isEdit ? 'Editar Doctor' : 'Registrar Nuevo Doctor' }}
+  </h1>
+
+  <form (ngSubmit)="submitForm()" class="space-y-6">
+    <!-- Nombre -->
+    <div>
+      <label class="block text-lg font-semibold text-gray-700 mb-2" for="name">
+        👨‍⚕️ Nombre del Doctor
+      </label>
+      <input
+        type="text"
+        id="name"
+        [(ngModel)]="doctor.name"
+        name="name"
+        required
+        placeholder="Ej. Juan Pérez"
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+      />
+    </div>
+
+    <!-- Especialidad -->
+    <div>
+      <label class="block text-lg font-semibold text-gray-700 mb-2" for="specialty">
+        🔬 Especialidad
+      </label>
+      <input
+        type="text"
+        id="specialty"
+        [(ngModel)]="doctor.specialty"
+        name="specialty"
+        required
+        placeholder="Ej. Pediatría"
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+      />
+    </div>
+
+    <!-- Experiencia -->
+    <div>
+      <label class="block text-lg font-semibold text-gray-700 mb-2" for="experience">
+        📈 Años de Experiencia
+      </label>
+      <input
+        type="number"
+        id="experience"
+        [(ngModel)]="doctor.experience"
+        name="experience"
+        min="0"
+        required
+        placeholder="Ej. 5"
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+      />
+    </div>
+
+    <!-- Botón -->
+    <div class="text-center">
+      <button
+        type="submit"
+        class="bg-indigo-600 hover:bg-indigo-700 transition text-white font-semibold px-6 py-3 rounded-xl shadow-md"
+      >
+        {{ isEdit ? 'Actualizar Información' : 'Guardar Información' }}
+      </button>
+    </div>
+  </form>
+</div>

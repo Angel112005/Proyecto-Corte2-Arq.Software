@@ -1,66 +1,80 @@
 package dependencies
 
-import (
-	"my-clinic-api/config"
-	appDoctor "my-clinic-api/doctor/application"
-	doctorAPI "my-clinic-api/doctor/infrastructure/api"
-	doctorPersistence "my-clinic-api/doctor/infrastructure/persistence"
-	appAppointment "my-clinic-api/appointment/application"
-	appointmentAPI "my-clinic-api/appointment/infrastructure/api"
-	appointmentPersistence "my-clinic-api/appointment/infrastructure/persistence"
-)
+// import (
+// 	"my-clinic-api/config"
 
-type AppDependencies struct {
-	DoctorController     *doctorAPI.Controller
-	AppointmentController *appointmentAPI.Controller
-}
+// 	appAppointment "my-clinic-api/appointment/application"
+// 	appointmentAPI "my-clinic-api/appointment/infrastructure/api"
+// 	appointmentPersistence "my-clinic-api/appointment/infrastructure/persistence"
+	
+// 	appDoctor "my-clinic-api/doctor/application"
+// 	doctorAPI "my-clinic-api/doctor/infrastructure/api"
+// 	doctorPersistence "my-clinic-api/doctor/infrastructure/persistence"
 
-func InitializeDependencies() (*AppDependencies, error) {
-	// Conexión a la base de datos
-	db, err := config.ConnectDB()
-	if err != nil {
-		return nil, err
-	}
+// 	// rabbitmqDomain "my-clinic-api/services/rabbitmq/domain"
+// 	rabbitmqApp "my-clinic-api/services/rabbitmq/application"
+// 	rabbitmqInfra "my-clinic-api/services/rabbitmq/infrastructure"
+// )
 
-	// Inicializar repositorios
-	doctorRepo := doctorPersistence.NewDoctorMySQL(db)
-	appointmentRepo := appointmentPersistence.NewAppointmentMySQL(db)
+// type AppDependencies struct {
+// 	DoctorController     *doctorAPI.Controller
+// 	AppointmentController *appointmentAPI.Controller
+// }
 
-	// Inicializar casos de uso
-	createDoctorUseCase := appDoctor.NewCreateDoctor(doctorRepo)
-	listDoctorsUseCase := appDoctor.NewListDoctors(doctorRepo)
-	updateDoctorUseCase := appDoctor.NewUpdateDoctor(doctorRepo)
-	deleteDoctorUseCase := appDoctor.NewDeleteDoctor(doctorRepo)
-	listDoctorByIDUseCase := appDoctor.NewListDoctorByID(doctorRepo)
+// func InitializeDependencies() (*AppDependencies, error) {
+// 	// Conexión a la base de datos
+// 	db, err := config.ConnectDB()
+// 	if err != nil {
+// 		return nil, err
+// 	}
 
-
-	createAppointmentUseCase := appAppointment.NewCreateAppointment(appointmentRepo)
-	listAppointmentsUseCase := appAppointment.NewListAppointments(appointmentRepo)
-	updateAppointmentUseCase := appAppointment.NewUpdateAppointment(appointmentRepo)
-	deleteAppointmentUseCase := appAppointment.NewDeleteAppointment(appointmentRepo)
-	findAppointmentByIDUseCase := appAppointment.NewFindAppointmentByID(appointmentRepo) // Nuevo caso de uso
+// 	// Conectar a RabbitMQ desde el servicio
+// 	rabbitMQ, err := rabbitmqInfra.NewRabbitMQ()
+// 	if err != nil {
+// 		return nil, err
+// 	}
+// 	publishMessageService := rabbitmqApp.NewPublishMessageService(rabbitMQ)
 
 
-	// Inicializar controladores
-	doctorController := doctorAPI.NewController(
-		createDoctorUseCase,
-		listDoctorsUseCase,
-		updateDoctorUseCase,
-		deleteDoctorUseCase,
-		listDoctorByIDUseCase,
-	)
+// 	// Inicializar repositorios
+// 	doctorRepo := doctorPersistence.NewDoctorMySQL(db)
+// 	appointmentRepo := appointmentPersistence.NewAppointmentMySQL(db)
 
-	appointmentController := appointmentAPI.NewController(
-		createAppointmentUseCase,
-		listAppointmentsUseCase,
-		updateAppointmentUseCase,
-		deleteAppointmentUseCase,
-		findAppointmentByIDUseCase, // Pasar el nuevo caso de uso
+// 	// Inicializar casos de uso
+// 	createDoctorUseCase := appDoctor.NewCreateDoctor(doctorRepo)
+// 	listDoctorsUseCase := appDoctor.NewListDoctors(doctorRepo)
+// 	updateDoctorUseCase := appDoctor.NewUpdateDoctor(doctorRepo)
+// 	deleteDoctorUseCase := appDoctor.NewDeleteDoctor(doctorRepo)
+// 	listDoctorByIDUseCase := appDoctor.NewListDoctorByID(doctorRepo)
 
-	)
 
-	return &AppDependencies{
-		DoctorController:     doctorController,
-		AppointmentController: appointmentController,
-	}, nil
-}
+// 	createAppointmentUseCase := appAppointment.NewCreateAppointment(appointmentRepo, publishMessageService)
+// 	listAppointmentsUseCase := appAppointment.NewListAppointments(appointmentRepo)
+// 	updateAppointmentUseCase := appAppointment.NewUpdateAppointment(appointmentRepo)
+// 	deleteAppointmentUseCase := appAppointment.NewDeleteAppointment(appointmentRepo)
+// 	findAppointmentByIDUseCase := appAppointment.NewFindAppointmentByID(appointmentRepo) // Nuevo caso de uso
+
+
+// 	// Inicializar controladores
+// 	doctorController := doctorAPI.NewController(
+// 		createDoctorUseCase,
+// 		listDoctorsUseCase,
+// 		updateDoctorUseCase,
+// 		deleteDoctorUseCase,
+// 		listDoctorByIDUseCase,
+// 	)
+
+// 	appointmentController := appointmentAPI.NewController(
+// 		createAppointmentUseCase,
+// 		listAppointmentsUseCase,
+// 		updateAppointmentUseCase,
+// 		deleteAppointmentUseCase,
+// 		findAppointmentByIDUseCase, // Pasar el nuevo caso de uso
+
+// 	)
+
+// 	return &AppDependencies{
+// 		DoctorController:     doctorController,
+// 		AppointmentController: appointmentController,
+// 	}, nil
+// }
