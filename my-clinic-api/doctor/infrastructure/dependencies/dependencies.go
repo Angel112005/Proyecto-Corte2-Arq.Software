@@ -3,7 +3,8 @@ package dependencies
 import (
 	"my-clinic-api/config"
 	appDoctor "my-clinic-api/doctor/application"
-	doctorAPI "my-clinic-api/doctor/infrastructure/api"
+	//Correción en la línea de abajo para la nueva ruta de la carpeta api -> controllers
+	doctorAPI "my-clinic-api/doctor/infrastructure/controllers"
 	doctorPersistence "my-clinic-api/doctor/infrastructure/persistence"
 )
 

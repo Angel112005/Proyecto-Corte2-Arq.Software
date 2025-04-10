@@ -2,7 +2,7 @@ package routes
 
 import (
 	"github.com/gin-gonic/gin"
-	doctorAPI "my-clinic-api/doctor/infrastructure/api"
+	doctorAPI "my-clinic-api/doctor/infrastructure/controllers"
 )
 
 // RegisterDoctorRoutes configura las rutas para la entidad "doctor"
