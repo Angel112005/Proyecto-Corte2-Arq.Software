@@ -25,7 +25,7 @@ func parseFecha(fechaStr string) (time.Time, error) {
 	formats := []string{
 		"2006-01-02T15:04",          // Sin segundos
 		"2006-01-02T15:04:05",       // Sin zona horaria
-		"2006-01-02T15:04:05Z07:00", // RFC3339
+		"2006-01-02T15:04:05Z07:00", 
 	}
 
 	var t time.Time
